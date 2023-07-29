@@ -9,13 +9,62 @@
   <footer>
     <button id="crear-objeto">Crear Objeto</button>
     <button id="asociar_cuentas">Asociar Cuentas</button>
+<<<<<<< HEAD
     <div>
       <button>AWS</button>
       <button>Azure</button>
+=======
+    <span style="display:flex">
+      <h4 id="index_cuentaAWS"></h4>
+      <h4 id="index_cuentaAzure">Azure:&times;</h4>
+    </span>
+  </footer>
+
+  <!-- Modal ASOCIAR CUENTAS -->
+  <div id="asociar_cuentas_modal" class="modal">
+    <div class="modal-content">
+      <span id="asociar_cuentas_span" class="close">&times;</span>
+      <h1>ASOCIAR CUENTAS</h1>
+
+      <div class="asociar_cuentas_tabs">
+        <button class="asociar_cuentas_tab_btn active" data-tab="asociar_cuentas_awstab">AWS</button>
+        <button class="asociar_cuentas_tab_btn" data-tab="asociar_cuentas_azuretab">Azure</button>
+      </div>
+    
+      <div class="asociar_cuentas_tab_content active" id="asociar_cuentas_awstab">
+        <div id="asociar_cuentasAWS_form">
+          <label for="asociar_cuentasAWS_publickey_input" class="asociar_cuentas_label">Public Key:</label>
+          <input type="text" id="asociar_cuentasAWS_publickey_input" class="asociar_cuentas_input" value="">
+      
+          <label for="asociar_cuentasAWS_secretkey_input" class="asociar_cuentas_label">Secret Key:</label>
+          <input type="email" id="asociar_cuentasAWS_secretkey_input" class="asociar_cuentas_input" value="">
+        
+          <button id="asociar_cuentasAWS_confirmar">Asociar Cuentas</button>
+        </div>
+        <div id="asociar_cuentasAWS_conectada">
+          <h1>Cuenta Conectada Correctamente</h1>
+          <label for="asociar_cuentasAWS_region">Seleccione la region:</label>
+          <select id="asociar_cuentasAWS_region">
+          </select>
+          <button id="asociar_cuentasAWS_cambiarregion">Cambiar</button>
+        </div>
+      </div>
+    
+      <div class="asociar_cuentas_tab_content" id="asociar_cuentas_azuretab">
+        <h1> Work In Progress </h1>
+      </div>    
+>>>>>>> 6101863 (Modificaciones Ligeras)
     </div>
   </footer>
   <script src="../js_scripts/python.js"></script>
+<<<<<<< HEAD
   <script src="../js_scripts/renderer.js"></script>
   <script src="../js_scripts/botones.js"></script>
+=======
+  <script src="../js_scripts/listado.js"></script>
+  <script src="../js_scripts/modal_asociarcuenta.js"></script>
+  <script src="../js_scripts/modal_asociarcuenta_tabs.js"></script>
+  <script src="../js_scripts/refrescarInformacion.js"></script>
+>>>>>>> 6101863 (Modificaciones Ligeras)
 </body>
 </html>
