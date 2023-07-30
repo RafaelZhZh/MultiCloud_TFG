@@ -1,20 +1,35 @@
 var listado_aws = []
 var listado_azure = []
+
 var publickey = "";
 var secretkey = "";
 var publickey_temp = ""
 var secretkey_temp = ""
 var region_aws = ""
+
 var modal_asociarcuenta = document.getElementById("asociar_cuentas_modal");
+var modal_crearmaquina = document.getElementById("crear_maquina_modal");
+var modal_confirmar_terminate = document.getElementById("confirmar_terminate_modal");
+
 var span = document.getElementById("asociar_cuentas_span");
+var span_terminate_MV = document.getElementById("confirmar_terminate_span");
+var span_crearmaquina = document.getElementById("crear_maquina_span");
+
 var cuentaAWSnoconectada = document.getElementById("asociar_cuentasAWS_form");
 var cuentaAWSconectada = document.getElementById("asociar_cuentasAWS_conectada");
-const tabButtons = document.querySelectorAll('.asociar_cuentas_tab_btn');
-const tabContents = document.querySelectorAll('.asociar_cuentas_tab_content');
-const PythonShell = require('python-shell').PythonShell;
+var botonCrearMV = document.getElementById("index_crear_maquina");
 
-const listado_mv = document.getElementById('index_listado_mv');
+
+var tabButtons_asociarcuenta = document.querySelectorAll('.asociar_cuentas_tab_btn');
+var tabContents_asociarcuenta = document.querySelectorAll('.asociar_cuentas_tab_content');
+
+var tabButtons_crearmaquina = document.querySelectorAll('.crear_maquina_tab_btn');
+var tabContents_crearmaquina = document.querySelectorAll('.crear_maquina_tab_content');
+
+var PythonShell = require('python-shell').PythonShell;
+
+var listado_mv = document.getElementById('index_listado_mv');
 var informacion_resumen = ["id","instance_type","private_ip_address"]
 
-const crearObjetoBtn = document.getElementById('crear-objeto');
+var crearObjetoBtn = document.getElementById('crear-objeto');
 

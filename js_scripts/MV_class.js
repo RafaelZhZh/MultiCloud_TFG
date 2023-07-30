@@ -69,9 +69,11 @@ class MV {
   
     AsignarValor(mensaje){
         try {
-            let nombre_valor = mensaje.split(":");
-            if (this.hasOwnProperty(nombre_valor[0])) {
-                this[nombre_valor[0]] = nombre_valor[1];
+            let indice = mensaje.indexOf(":")
+            let nombre = mensaje.substring(0,indice)
+            let valor = mensaje.substring(indice+1)
+            if (this.hasOwnProperty(nombre)) {
+                this[nombre] = valor.replace(/\s/g, '');
             }
         } catch (error) {
             console.error('Error al asignar valores desde la cadena:', error);

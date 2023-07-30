@@ -12,9 +12,13 @@
   display: flex;
 }
 
-.btn-borrar,
-.btn-clonar {
+.index_btn_detener,
+.index_btn_iniciar {
   margin-left: 4px;
+}
+
+#index_crear_maquina{
+  display:none;
 }
 
 /* Estilos del footer */

@@ -1,0 +1,65 @@
+/*
+#############
+############# FORM/INPUTS
+#############
+*/
+
+#crear_maquinaAWS_form {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+max-width: 400px;
+margin: 50px auto;
+padding: 20px;
+}
+
+.crear_maquinaAWS_label {
+display: block;
+font-size: 16px;
+margin-bottom: 5px;
+}
+
+.crear_maquinaAWS_select{
+width: 90%;
+padding: 10px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 5px;
+margin-bottom: 15px;
+}
+
+/*
+#############
+############# TABS
+#############
+*/
+.crear_maquina_tabs{
+display: flex;
+justify-content: center;
+margin-top: 20px;
+}
+
+.crear_maquina_tab_btn {
+background-color: #007bff;
+color: #fff;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.crear_maquina_tab_btn:not(.active) {
+background-color: #ccc;
+}
+
+.crear_maquina_tab_content {
+display: none;
+max-width: 400px;
+margin: 20px auto;
+background-color: #fff;
+padding: 20px;
+}
+
+.crear_maquina_tab_content.active {
+display: block;
+}
