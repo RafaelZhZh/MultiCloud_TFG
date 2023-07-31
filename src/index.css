@@ -1,5 +1,5 @@
 /* Estilos del listado de objetos */
-.objeto-container {
+.index_mv_container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,7 +8,7 @@
   margin-bottom: 4px;
 }
 
-.objeto-actions {
+.index_mv_actions {
   display: flex;
 }
 

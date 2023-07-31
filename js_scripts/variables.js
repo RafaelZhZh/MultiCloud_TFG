@@ -11,13 +11,18 @@ var modal_asociarcuenta = document.getElementById("asociar_cuentas_modal");
 var modal_crearmaquina = document.getElementById("crear_maquina_modal");
 var modal_confirmar_terminate = document.getElementById("confirmar_terminate_modal");
 
+
 var span = document.getElementById("asociar_cuentas_span");
 var span_terminate_MV = document.getElementById("confirmar_terminate_span");
 var span_crearmaquina = document.getElementById("crear_maquina_span");
 
+
 var cuentaAWSnoconectada = document.getElementById("asociar_cuentasAWS_form");
 var cuentaAWSconectada = document.getElementById("asociar_cuentasAWS_conectada");
 var botonCrearMV = document.getElementById("index_crear_maquina");
+
+var titulo_mas_info = document.getElementById("mas_info_titulo");
+var body_mas_info = document.getElementById("mas_info_contenido");
 
 
 var tabButtons_asociarcuenta = document.querySelectorAll('.asociar_cuentas_tab_btn');
