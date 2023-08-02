@@ -13,7 +13,15 @@ window.onclick = function(event) {
 }
 
 crear_maquinaAWS_confirmar.addEventListener('click', () => {
-  crearMV();
+  let name = document.getElementById("crear_maquinaAWS_name_input").value
+  let size = document.getElementById("crear_maquinaAWS_size_input").value
+  if(name=="" || size == "" || size <=0){
+    alert("Parametros incorrectos")
+  }
+  else{
+    crearMV();
+    modal_crearmaquina.style.display = "none";
+  }
 });
 
 

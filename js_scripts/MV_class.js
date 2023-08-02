@@ -70,10 +70,16 @@ class MV {
     AsignarValor(mensaje){
         try {
             let indice = mensaje.indexOf(":")
-            let nombre = mensaje.substring(0,indice)
-            let valor = mensaje.substring(indice+1)
+            let nombre = mensaje.substring(0,indice).trimStart();
+            let valor = mensaje.substring(indice+1).trimStart();
+            
             if (this.hasOwnProperty(nombre)) {
-                this[nombre] = valor.replace(/\s/g, '');
+                if(["tags","state"].includes(nombre)){
+                    this[nombre] = JSON.parse(valor.replace(/'/g, '"'));
+                }
+                else{
+                    this[nombre] = valor;
+                }
             }
         } catch (error) {
             console.error('Error al asignar valores desde la cadena:', error);

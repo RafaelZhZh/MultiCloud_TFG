@@ -3,18 +3,19 @@ function renderListado() {
   listado_aws.forEach((objeto, index) => {
     let elemento = document.createElement('div');
     elemento.classList.add('index_mv_container');
-    elemento.innerHTML = "<span>ID: "+objeto.id+"</span>"+
-                         "<span>Estado: "+objeto.state+"</span>"+
-                         "<div class=\"index_mv_actions\">"
+    elemento.innerHTML = "<div><span>ID: "+objeto.id+"</span><hr><span>Instance Type: "+objeto.instance_type+"</span></div>"+
+                         "<span>Estado: "+objeto.state+"</span>";
+    let elemento2 = document.createElement('div');   
+    elemento2.style.textAlign = "right";         
     if(objeto.state.indexOf("running")!=-1){
       elemento2.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_detener\" onclick=\"detenerMV('"+objeto.id+"')\">Detener</button>"
     }
-    else if(objeto.state.indexOf("stopped")!=-1){
-      elemento2.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_iniciar\" onclick=\"iniciarMV('"+objeto.id+"')\">Iniciar</button>"
-      elemento2.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_terminar\" onclick=\"terminar('"+objeto.id+"')\">Terminar</button>"
+    else if(objeto.state.Name == "stopped"){
+      botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_iniciar\" onclick=\"iniciarMV('"+objeto.id+"')\">Iniciar</button>"
+      botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_terminar\" onclick=\"terminar('"+objeto.id+"')\">Terminar</button>"
     }
-    elemento.innerHTML += "</div>";
-
+    elemento2.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_moreinfo\" onclick=\"moreInfo('"+objeto.id+"')\">Mas info</button>"
+    elemento.appendChild(elemento2);
     listado_mv.appendChild(elemento);
   });
 }

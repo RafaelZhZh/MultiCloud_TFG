@@ -152,12 +152,14 @@ function crearMV(){
     let path = require('path');
     let ami = document.getElementById("crear_maquinaAWS_ami").value
     let instance_type = document.getElementById("crear_maquinaAWS_tipo").value
+    let name = document.getElementById("crear_maquinaAWS_name_input").value
+    let size = document.getElementById("crear_maquinaAWS_size_input").value
 
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
         scriptPath: path.join(__dirname, '..\\python_scripts\\'),
-        args : [publickey,secretkey,region_aws,ami,instance_type]
+        args : [publickey,secretkey,region_aws,ami,instance_type,name,size]
     }
 
     PythonShell.run('create_instance.py', options).then(messages=>{
@@ -169,6 +171,7 @@ function crearMV(){
             else{
                 console.log("MV creada")
                 obtener_info_maquinas();
+                
             }
         });
 

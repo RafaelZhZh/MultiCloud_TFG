@@ -34,7 +34,11 @@ var tabContents_crearmaquina = document.querySelectorAll('.crear_maquina_tab_con
 var PythonShell = require('python-shell').PythonShell;
 
 var listado_mv = document.getElementById('index_listado_mv');
+
 var informacion_resumen = ["id","instance_type","private_ip_address"]
 
-var crearObjetoBtn = document.getElementById('crear-objeto');
+var aws_connected = false;
+var azure_connected = false;
+
+
 
