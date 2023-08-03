@@ -87,7 +87,6 @@ function detenerMV(id){
 }
 
 function iniciarMV(id){
-    console.log("ENTRE CON: "+id)
     if(region_aws == ""){
         return false
     }

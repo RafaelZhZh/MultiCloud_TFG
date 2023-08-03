@@ -9,11 +9,11 @@ var region_aws = ""
 
 var modal_asociarcuenta = document.getElementById("asociar_cuentas_modal");
 var modal_crearmaquina = document.getElementById("crear_maquina_modal");
-var modal_confirmar_terminate = document.getElementById("confirmar_terminate_modal");
+var modal_confirmar_accion = document.getElementById("confirmar_accion_modal");
 
 
 var span = document.getElementById("asociar_cuentas_span");
-var span_terminate_MV = document.getElementById("confirmar_terminate_span");
+var span_confirmar_accion_MV = document.getElementById("confirmar_accion_span");
 var span_crearmaquina = document.getElementById("crear_maquina_span");
 
 
