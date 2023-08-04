@@ -1,16 +1,6 @@
 function renderListado() {
   listado_mv.innerHTML = '';
   listado_aws.forEach((objeto, index) => {
-<<<<<<< HEAD
-    let elemento = document.createElement('div');
-    elemento.classList.add('index_mv_container');
-    elemento.innerHTML = "<div><span>ID: "+objeto.id+"</span><hr><span>Instance Type: "+objeto.instance_type+"</span></div>"+
-                         "<span>Estado: "+objeto.state+"</span>";
-    let elemento2 = document.createElement('div');   
-    elemento2.style.textAlign = "right";         
-    if(objeto.state.indexOf("running")!=-1){
-      elemento2.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_detener\" onclick=\"detenerMV('"+objeto.id+"')\">Detener</button>"
-=======
     let row = document.createElement('div');
     row.classList.add('index_mv_container');
     // Parte Izquierda (IMAGEN)
@@ -29,15 +19,14 @@ function renderListado() {
     botones.style.textAlign = "right";         
     if(objeto.state.Name == "running"){
       botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_detener\" onclick=\"confirmar('"+objeto.id+"','detener')\">Detener</button>"
->>>>>>> a9a9ad3 (Botones de Confirmar)
     }
     else if(objeto.state.Name == "stopped"){
       botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_iniciar\" onclick=\"confirmar('"+objeto.id+"','iniciar')\">Iniciar</button>"
       botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_terminar\" onclick=\"confirmar('"+objeto.id+"','terminar')\">Terminar</button>"
     }
-    elemento2.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_moreinfo\" onclick=\"moreInfo('"+objeto.id+"')\">Mas info</button>"
-    elemento.appendChild(elemento2);
-    listado_mv.appendChild(elemento);
+    botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_moreinfo\" onclick=\"moreInfo('"+objeto.id+"')\">Mas info</button>"
+    row.appendChild(botones);
+    listado_mv.appendChild(row);
   });
 }
 

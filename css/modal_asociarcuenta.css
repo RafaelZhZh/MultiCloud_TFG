@@ -1,0 +1,123 @@
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    /* Modal Content/Box */
+    .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    }
+    
+    /* The Close Button */
+    .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    }
+    
+    
+    /*
+    #############
+    ############# FORM/INPUTS
+    #############
+    */
+    
+    #asociar_cuentas_form {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    }
+    
+    .asociar_cuentas_label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    }
+    
+    .asociar_cuentas_input{
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    }
+    
+    .asociar_cuentas_input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+    }
+    
+    .asociar_cuentas_input::placeholder {
+    color: #aaa;
+    }
+    
+    .asociar_cuentas_input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    }
+    
+    .asociar_cuentas_input[type="submit"]:hover {
+    background-color: #0056b3;
+    }
+    
+    /*
+    #############
+    ############# TABS
+    #############
+    */
+    .asociar_cuentas_tabs{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    }
+    
+    .asociar_cuentas_tab_btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    
+    .asociar_cuentas_tab_btn:not(.active) {
+    background-color: #ccc;
+    }
+    
+    .asociar_cuentas_tab_content {
+    display: none;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    }
+    
+    .asociar_cuentas_tab_content.active {
+    display: block;
+    }

@@ -1,16 +1,13 @@
-const {PythonShell} =require('python-shell');
+function conectAWS(publickey_temp,secretkey_temp){
+    let path = require('path');
+    //const PythonShell = require('python-shell').PythonShell;
 
-function conectAWS(){
-    var path = require('path');
-    const PythonShell = require('python-shell').PythonShell;
-
-    var nombre = "Rafa";
-    var options = {
+    let options = {
         mode: 'text',
         //pythonPath: 'path/to/python',
         pythonOptions: ['-u'],
         scriptPath: path.join(__dirname, '..\\python_scripts\\'),
-        args : [nombre]
+        args : [publickey_temp,secretkey_temp]
     }
 
     PythonShell.run('check_credentials.py', options).then(messages=>{
@@ -21,7 +18,8 @@ function conectAWS(){
                 
                 obtener_regiones();
                 cuentaAWSconectada.style.display = "block";
-                cuentaAWSnoconectada.style.display = "none";            
+                cuentaAWSnoconectada.style.display = "none";
+                botonCrearMV.style.display = "block";          
             }
             else if(element == "Mala"){
                 return false
@@ -55,7 +53,46 @@ function obtener_regiones(){
             }
         });
     });
+}
 
+function obtener_info_maquinas(){
+    console.log("HOLA2");
+    if(region_aws == ""){
+        return false
+    }
+
+    let path = require('path');
+
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        scriptPath: path.join(__dirname, '..\\python_scripts\\'),
+        args : [publickey,secretkey,region_aws]
+    }
+
+    PythonShell.run('get_all_instances.py', options).then(messages=>{
+        listado_aws = []
+        let mv = new MV()
+        messages.forEach(element => {
+            if(element.startsWith("Error")){
+                return false;
+            }
+            else if(element.startsWith("_id")){
+                if(mv.id != ""){
+                    listado_aws.push(mv)
+                    mv = new MV()
+                }
+                mv.AsignarValor(element)
+            }
+            else{
+                mv.AsignarValor(element)
+            }
+        });
+        if(mv.id != ""){
+            listado_aws.push(mv)
+        }
+        renderListado();
+    });
 }
 
 function detenerMV(id){
