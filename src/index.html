@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lista de Objetos</title>
+  <title>MultiCloud Platform</title>
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="../css/modal_asociarcuenta.css">
 </head>
 <body>
+<<<<<<< HEAD
   <div id="objeto-listado"></div>
+=======
+  <div id="index_listado_mv"></div>
+  <div id="index_sin_conexion">
+    <h1> Por favor, asocie alguna cuenta de AWS o Azure a la aplicación.</h1>
+  </div>
+>>>>>>> be55513 (Tutorial AWS)
   <footer>
     <button id="index_crear_maquina">Crear Maquina</button>
     <button id="asociar_cuentas">Asociar Cuentas</button>
@@ -35,13 +42,58 @@
     
       <div class="asociar_cuentas_tab_content active" id="asociar_cuentas_awstab">
         <div id="asociar_cuentasAWS_form">
-          <label for="asociar_cuentasAWS_publickey_input" class="asociar_cuentas_label">Public Key:</label>
+          <label for="asociar_cuentasAWS_publickey_input" class="asociar_cuentas_label">Clave de acceso:</label>
           <input type="text" id="asociar_cuentasAWS_publickey_input" class="asociar_cuentas_input" value="">
       
-          <label for="asociar_cuentasAWS_secretkey_input" class="asociar_cuentas_label">Secret Key:</label>
+          <label for="asociar_cuentasAWS_secretkey_input" class="asociar_cuentas_label">Clave de acceso secreta:</label>
           <input type="password" id="asociar_cuentasAWS_secretkey_input" class="asociar_cuentas_input" value="">
         
           <button id="asociar_cuentasAWS_confirmar">Asociar Cuentas</button>
+          <button id="asociar_cuentasAWS_tutorial">Mostrar/Ocultar Ayuda</button>
+          <div id="asociar_cuentasAWS_tutorial_text">
+            <h3>Pasos para conectar cuenta de AWS:</h3>
+            <p>1. Crear una cuenta de Amazon Web Service. Seguir los pasos que indica la página web.</p>
+            <p>2. En el portal de AWS, insertar en el buscador (parte superior izquierda) el termino "IAM".</p>
+            <p>3. En el listado situado a la izquierda, pulsar sobre la sección "Usuarios"</p>
+            <p>4. En la sección "Usuarios", buscar el botón de "Agregar usuarios", situado en la parte superior derecha.</p>
+            <p>5. Introducir el nombre que desee y pulsar en "Siguiente".</p>
+            <p>6. En el paso "Establecer permisos", avanza sin modificar nada pulsando en el boton "Siguiente".</p>
+            <p>7. En el paso "Revisar y crear", avanza sin modificar nada pulsando en el boton "Crear usuario".</p>
+            <p>8. Pulsar encima del nombre que le hemos otorgado al usuario para abrir los detalles avanzados del usuario.</p>
+            <p>9. En la sección de "Permisos", en el modulo "Políticas de permisos", buscar en la parte derecha el boton "Agregar permisos", pulsarlo y elegir "Crear politica insertada".</p>
+            <p>10. En la parte superior derecha, buscar el boton "JSON" y pulsarlo.</p>
+            <p>11. Sustituir el contenido por el siguiente texto:
+              {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Sid": "VisualEditor0",
+                  "Effect": "Allow",
+                  "Action": [
+                    "ec2:DescribeImages",
+                    "ec2:DescribeInstances",
+                    "ec2:TerminateInstances",
+                    "ec2:StartInstances",
+                    "ec2:CreateTags",
+                    "ec2:DescribeRegions",
+                    "ec2:RunInstances",
+                    "ec2:StopInstances"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            }</p>
+            <p>12. Pulsar en el botón "Siguiente". </p>
+            <p>13. En el siguiente paso, introducir un nombre que se desee y pulsar en "Crear política".</p>
+            <p>14. En la ventana detallada del usuario, ir a la sección "Credenciales de seguridad". </p>
+            <p>15. En el modulo "Claves de acceso", pulsar en "Crear clave de acceso".</p>
+            <p>16. Elegir "Código local", marcar la casilla de Confirmación y pulsar en "Siguiente". </p>
+            <p>17. Introduzca la descripción que desee y pulse en "Crear clave de acceso". </p>
+            <p>18. Copiar y guardar de manera segura las claves de acceso. (Manual o CSV)</p>
+            <p>19. Pulsar en "Listo" </p>
+            <p>20. Rellene las claves de acceso en los espacios indicados en esta aplicación. </p>
+
+          </div>
         </div>
         <div id="asociar_cuentasAWS_conectada">
           <h1>Cuenta Conectada Correctamente</h1>
@@ -106,7 +158,7 @@
         <div id="crear_maquinaAWS_form">
           <label for="crear_maquinaAWS_name_input" class="crear_maquinaAWS_label">Nombre:</label>
           <input type="text" id="crear_maquinaAWS_name_input" class="crear_maquinaAWS_input" value="">
-          <label for="crear_maquinaAWS_size_input" class="crear_maquinaAWS_label">Tamaño del disco:</label>
+          <label for="crear_maquinaAWS_size_input" class="crear_maquinaAWS_label">Tamaño del disco (Mayor o igual que 8GB):</label>
           <input type="number" id="crear_maquinaAWS_size_input" class="crear_maquinaAWS_input" value="">
           <label for="crear_maquinaAWS_ami" class="crear_maquinaAWS_label">Seleccione la imagen:</label>
           <select id="crear_maquinaAWS_ami" class="crear_maquinaAWS_select">

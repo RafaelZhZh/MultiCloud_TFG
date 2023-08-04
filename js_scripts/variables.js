@@ -40,5 +40,7 @@ var informacion_resumen = ["id","instance_type","private_ip_address"]
 var aws_connected = false;
 var azure_connected = false;
 
+var texto_ayuda=document.getElementById("asociar_cuentasAWS_tutorial_text")
+
 
 

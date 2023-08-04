@@ -1,4 +1,6 @@
 cuentaAWSconectada.style.display = "none";
+texto_ayuda.style.display="none";
+
 let select = ""
 let MV_AUX = new MV();
 for (let atributo in MV_AUX){
@@ -13,6 +15,14 @@ segundo_elemento.innerHTML = select
 let tercero_elemento = document.getElementById("asociar_cuentasResumen_tercero")
 tercero_elemento.innerHTML = select
 cargarinformacion_resumen()
+
+asociar_cuentasAWS_tutorial.addEventListener('click', () => {
+  if (texto_ayuda.style.display == "none") {
+    texto_ayuda.style.display = "block";
+  } else {
+    texto_ayuda.style.display = "none";
+  }
+});
 
 function cargarinformacion_resumen(){
   let primero_elemento = document.getElementById("asociar_cuentasResumen_primero")
@@ -36,8 +46,8 @@ asociar_cuentasResumen_cambiarResumen.addEventListener('click', () => {
 });
 
 asociar_cuentasAWS_cambiarregion.addEventListener('click', () => {
+  RefrescarInformacionDeMV();
   region_aws = document.getElementById("asociar_cuentasAWS_region").value;
-  obtener_info_maquinas();
   modal_asociarcuenta.style.display = "none";
 });
 

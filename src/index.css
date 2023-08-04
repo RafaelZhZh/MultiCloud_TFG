@@ -1,4 +1,8 @@
 /* Estilos del listado de objetos */
+#index_listado_mv{
+  display:none;
+}
+
 .index_mv_container {
 <<<<<<< HEAD
   display: flex;

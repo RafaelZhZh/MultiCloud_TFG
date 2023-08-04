@@ -7,6 +7,7 @@ function VerificarSiCuentaConectada() {
         aws.innerHTML = '&#10004;AWS';
         aws.style.color = 'green';
         aws_connected = true;
+        
     } else{
        aws.innerHTML = '&times;AWS';
        aws.style.color = 'red';
@@ -19,8 +20,14 @@ function VerificarSiCuentaConectada() {
 
 
 function RefrescarInformacionDeMV(){
-    if(aws_connected || azure_connected){
+    if(aws_connected|| azure_connected){
         obtener_info_maquinas()
+        document.getElementById('index_sin_conexion').style.display = "none";
+        document.getElementById('index_listado_mv').style.display = "block";
+    }
+    else{
+        document.getElementById('index_sin_conexion').style.display = "block";
+        document.getElementById('index_listado_mv').style.display = "none";
     }
 }
 

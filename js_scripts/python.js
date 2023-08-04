@@ -51,6 +51,7 @@ function obtener_regiones(){
             }
             else{
                 picklist_region.innerHTML += "<option value=\""+element+"\">"+element+"</option>"
+                region_aws = element;
             }
         });
     });
