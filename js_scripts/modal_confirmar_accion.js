@@ -17,7 +17,7 @@ function confirmar(id,accion){
     titulo.innerHTML = "¿Desea terminar con la máquina virtual?"
     texto.innerHTML = "Esta accion borrará TODOS los datos de la misma y no se puede revertir."
     boton.onclick = function() {
-      terminarMV(id);
+      terminarMVAWS(id);
       console.log("TERMINANDO INSTANCIA")
       modal_confirmar_accion.style.display = "none";
       boton.removeAttribute("onclick");
@@ -27,7 +27,7 @@ function confirmar(id,accion){
     titulo.innerHTML = "¿Desea encender la máquina virtual?"
     texto.innerHTML = ""
     boton.onclick = function() {
-      iniciarMV(id);
+      iniciarMVAWS(id);
       console.log("INICIANDO INSTANCIA")
       modal_confirmar_accion.style.display = "none";
       boton.removeAttribute("onclick");
@@ -37,7 +37,7 @@ function confirmar(id,accion){
     titulo.innerHTML = "¿Desea apagar la máquina virtual?"
     texto.innerHTML = "Asegurese de que no necesita la máquina y es la correcta. Al apagar la máquina todos los procesos internos serán apagados también."
     boton.onclick = function() {
-      detenerMV(id);
+      detenerMVAWS(id);
       console.log("DETENIENDO INSTANCIA")
       modal_confirmar_accion.style.display = "none";
       boton.removeAttribute("onclick");

@@ -20,8 +20,8 @@ function VerificarSiCuentaConectada() {
 
 
 function RefrescarInformacionDeMV(){
-    if(aws_connected|| azure_connected){
-        obtener_info_maquinas()
+    if(aws_connected || azure_connected){
+        obtener_info_maquinasAWS()
         document.getElementById('index_sin_conexion').style.display = "none";
         document.getElementById('index_listado_mv').style.display = "block";
     }

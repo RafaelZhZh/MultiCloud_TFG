@@ -19,7 +19,7 @@ crear_maquinaAWS_confirmar.addEventListener('click', () => {
     alert("Parametros incorrectos")
   }
   else{
-    crearMV();
+    crearMVAWS();
     modal_crearmaquina.style.display = "none";
   }
 });

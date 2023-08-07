@@ -1,12 +1,14 @@
+var path_aws_scripts = '..\\aws_python_scripts\\'
+var path_azure_scripts = '..\\azure_python_scripts\\'
+
 function conectAWS(publickey_temp,secretkey_temp){
     let path = require('path');
-    //const PythonShell = require('python-shell').PythonShell;
 
     let options = {
         mode: 'text',
         //pythonPath: 'path/to/python',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, '..\\python_scripts\\'),
+        scriptPath: path.join(__dirname, path_aws_scripts),
         args : [publickey_temp,secretkey_temp]
     }
 
@@ -16,7 +18,7 @@ function conectAWS(publickey_temp,secretkey_temp){
                 publickey = publickey_temp
                 secretkey = secretkey_temp
                 
-                obtener_regiones();
+                obtener_regionesAWS();
                 cuentaAWSconectada.style.display = "block";
                 cuentaAWSnoconectada.style.display = "none";
                 botonCrearMV.style.display = "block";          
@@ -31,13 +33,13 @@ function conectAWS(publickey_temp,secretkey_temp){
     });
 }
 
-function obtener_regiones(){
+function obtener_regionesAWS(){
     let path = require('path');
 
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, '..\\python_scripts\\'),
+        scriptPath: path.join(__dirname, path_aws_scripts),
         args : [publickey,secretkey]
     }
 
@@ -55,8 +57,7 @@ function obtener_regiones(){
     });
 }
 
-function obtener_info_maquinas(){
-    console.log("HOLA2");
+function obtener_info_maquinasAWS(){
     if(region_aws == ""){
         return false
     }
@@ -66,7 +67,7 @@ function obtener_info_maquinas(){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, '..\\python_scripts\\'),
+        scriptPath: path.join(__dirname, path_aws_scripts),
         args : [publickey,secretkey,region_aws]
     }
 
@@ -95,7 +96,7 @@ function obtener_info_maquinas(){
     });
 }
 
-function detenerMV(id){
+function detenerMVAWS(id){
     console.log("ENTRE CON: "+id)
     if(region_aws == ""){
         return false
@@ -105,7 +106,7 @@ function detenerMV(id){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, '..\\python_scripts\\'),
+        scriptPath: path.join(__dirname, path_aws_scripts),
         args : [publickey,secretkey,region_aws,id]
     }
 
@@ -117,14 +118,14 @@ function detenerMV(id){
             }
             else{
                 console.log("MV parada")
-                obtener_info_maquinas();
+                RefrescarInformacionDeMV();
             }
         });
 
     });
 }
 
-function iniciarMV(id){
+function iniciarMVAWS(id){
     if(region_aws == ""){
         return false
     }
@@ -133,7 +134,7 @@ function iniciarMV(id){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, '..\\python_scripts\\'),
+        scriptPath: path.join(__dirname, path_aws_scripts),
         args : [publickey,secretkey,region_aws,id]
     }
 
@@ -145,14 +146,14 @@ function iniciarMV(id){
             }
             else{
                 console.log("MV iniciada")
-                obtener_info_maquinas();
+                RefrescarInformacionDeMV();
             }
         });
 
     });
 }
 
-function terminarMV(id){
+function terminarMVAWS(id){
     console.log("ENTRE CON: "+id)
     if(region_aws == ""){
         return false
@@ -162,7 +163,7 @@ function terminarMV(id){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, '..\\python_scripts\\'),
+        scriptPath: path.join(__dirname, path_aws_scripts),
         args : [publickey,secretkey,region_aws,id]
     }
 
@@ -174,14 +175,14 @@ function terminarMV(id){
             }
             else{
                 console.log("MV terminada")
-                obtener_info_maquinas();
+                RefrescarInformacionDeMV();
             }
         });
 
     });
 }
 
-function crearMV(){
+function crearMVAWS(){
     console.log("CREANDO MAQUINA")
     if(region_aws == ""){
         return false
@@ -195,7 +196,7 @@ function crearMV(){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, '..\\python_scripts\\'),
+        scriptPath: path.join(__dirname, path_aws_scripts),
         args : [publickey,secretkey,region_aws,ami,instance_type,name,size]
     }
 
@@ -207,10 +208,11 @@ function crearMV(){
             }
             else{
                 console.log("MV creada")
-                obtener_info_maquinas();
+                RefrescarInformacionDeMV();
                 
             }
         });
 
     });
 }
+

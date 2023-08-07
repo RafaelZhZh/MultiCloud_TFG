@@ -40,7 +40,7 @@ asociar_cuentasResumen_cambiarResumen.addEventListener('click', () => {
   informacion_resumen = [primero_elemento.value, segundo_elemento.value, tercero_elemento.value]
   cargarinformacion_resumen()
   if(aws_connected || azure_connected){
-    obtener_info_maquinas()
+    RefrescarInformacionDeMV();
   }
   modal_asociarcuenta.style.display = "none";
 });
