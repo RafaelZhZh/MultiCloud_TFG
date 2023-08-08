@@ -2,7 +2,6 @@ import sys,time
 from azure.identity import ClientSecretCredential
 from azure.mgmt.compute import ComputeManagementClient
 from azure.mgmt.network import NetworkManagementClient
-from azure.mgmt.resource import ResourceManagementClient
 
 client_secret = sys.argv[1]
 subscription_id = sys.argv[2]

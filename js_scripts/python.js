@@ -15,6 +15,7 @@ function conectAWS(publickey_temp,secretkey_temp){
     PythonShell.run('check_credentials.py', options).then(messages=>{
         messages.forEach(element => {
             if(element == "Buena"){
+                aws_connected = true;
                 publickey = publickey_temp
                 secretkey = secretkey_temp
                 
@@ -27,8 +28,46 @@ function conectAWS(publickey_temp,secretkey_temp){
                 return false
             }
             else{
+                alert("Error: "+element)
                 return false
             }
+        });
+    });
+}
+function conectAzure(client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp){
+    let path = require('path');
+
+    let options = {
+        mode: 'text',
+        //pythonPath: 'path/to/python',
+        pythonOptions: ['-u'],
+        scriptPath: path.join(__dirname, path_azure_scripts),
+        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp]
+    }
+
+    PythonShell.run('check_credentials.py', options).then(messages=>{
+        messages.forEach(element => {
+            if(element.startsWith("Azure: "))
+                element = element.replace("Azure: ","")
+                if(element == "Buena"){
+                    azure_connected = true
+                    client_secret = client_secret_temp
+                    subscription_id = subscription_id_temp
+                    tenant_id = tenant_id_temp
+                    client_id = client_id_temp
+                    
+                    obtener_regionesAzure();
+                    cuentaAzureconectada.style.display = "block";
+                    cuentaAzurenoconectada.style.display = "none";
+                    botonCrearMV.style.display = "block";          
+                }
+                else if(element == "Mala"){
+                    return false
+                }
+                else{
+                    alert("Error: "+element)
+                    return false
+                }
         });
     });
 }
@@ -47,13 +86,40 @@ function obtener_regionesAWS(){
         let picklist_region = document.getElementById("asociar_cuentasAWS_region");
         messages.forEach(element => {
             if(element.startsWith("Error")){
+                alert("Error: "+element)
                 return false;
             }
             else{
                 picklist_region.innerHTML += "<option value=\""+element+"\">"+element+"</option>"
-                region_aws = element;
+                
             }
         });
+        region_aws = document.getElementById("asociar_cuentasAWS_region").value;
+    });
+}
+function obtener_regionesAzure(){
+    let path = require('path');
+
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        scriptPath: path.join(__dirname, path_azure_scripts),
+        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp]
+    }
+
+    PythonShell.run('get_all_regions.py', options).then(messages=>{
+        let picklist_region = document.getElementById("asociar_cuentasazure_region");
+        messages.forEach(element => {
+            if(element.startsWith("Error")){
+                alert("Error: "+element)
+                return false;
+            }
+            else{
+                picklist_region.innerHTML += "<option value=\""+element+"\">"+element+"</option>"
+                
+            }
+        });
+        region_azure = document.getElementById("asociar_cuentasazure_region").value;
     });
 }
 
@@ -76,24 +142,61 @@ function obtener_info_maquinasAWS(){
         let mv = new MV()
         messages.forEach(element => {
             if(element.startsWith("Error")){
+                alert("Error: "+element)
                 return false;
             }
-            else if(element.startsWith("_id")){
-                if(mv.id != ""){
+            else if(element.startsWith("architecture")){
+                if(mv.ID != ""){
                     listado_aws.push(mv)
                     mv = new MV()
                 }
-                mv.AsignarValor(element)
+                mv.AsignarValor(element,"aws")
             }
             else{
-                mv.AsignarValor(element)
+                mv.AsignarValor(element,"aws")
             }
         });
-        if(mv.id != ""){
+        if(mv.ID != ""){
             listado_aws.push(mv)
         }
-        renderListado();
     });
+    renderListado();
+}
+function obtener_info_maquinasAzure(){
+
+    let path = require('path');
+
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        scriptPath: path.join(__dirname, path_azure_scripts),
+        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, region_azure]
+    }
+
+    PythonShell.run('get_all_instances.py', options).then(messages=>{
+        listado_azure = []
+        let mv = new MV()
+        messages.forEach(element => {
+            if(element.startsWith("Error")){
+                alert("Error: "+element)
+                return false;
+            }
+            else if(element.startsWith("vm_size")){
+                if(mv.ID != ""){
+                    listado_azure.push(mv)
+                    mv = new MV()
+                }
+                mv.AsignarValor(element,"azure")
+            }
+            else{
+                mv.AsignarValor(element,"azure")
+            }
+        });
+        if(mv.ID != ""){
+            listado_azure.push(mv)
+        }
+    });
+    renderListado();
 }
 
 function detenerMVAWS(id){
@@ -113,11 +216,35 @@ function detenerMVAWS(id){
     PythonShell.run('stop_instance.py', options).then(messages=>{
         messages.forEach(element => {
             if(element.startsWith("Error")){
-                console.log("Error: "+element)
+                alert("Error: "+element)
                 return false;
             }
             else{
                 console.log("MV parada")
+                RefrescarInformacionDeMV();
+            }
+        });
+
+    });
+}
+function detenerMVAzure(id){
+    let path = require('path');
+
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        scriptPath: path.join(__dirname, path_azure_scripts),
+        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id]
+    }
+
+    PythonShell.run('stop_instance.py', options).then(messages=>{
+        messages.forEach(element => {
+            if(element.startsWith("Error")){
+                alert("Error: "+element)
+                return false;
+            }
+            else{
+                console.log("MV detenida")
                 RefrescarInformacionDeMV();
             }
         });
@@ -141,7 +268,31 @@ function iniciarMVAWS(id){
     PythonShell.run('start_instance.py', options).then(messages=>{
         messages.forEach(element => {
             if(element.startsWith("Error")){
-                console.log("Error: "+element)
+                alert("Error: "+element)
+                return false;
+            }
+            else{
+                console.log("MV iniciada")
+                RefrescarInformacionDeMV();
+            }
+        });
+
+    });
+}
+function iniciarMVAzure(id){
+    let path = require('path');
+
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        scriptPath: path.join(__dirname, path_azure_scripts),
+        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id]
+    }
+
+    PythonShell.run('start_instance.py', options).then(messages=>{
+        messages.forEach(element => {
+            if(element.startsWith("Error")){
+                alert("Error: "+element)
                 return false;
             }
             else{
@@ -170,7 +321,31 @@ function terminarMVAWS(id){
     PythonShell.run('terminate_instance.py', options).then(messages=>{
         messages.forEach(element => {
             if(element.startsWith("Error")){
-                console.log("Error: "+element)
+                alert("Error: "+element)
+                return false;
+            }
+            else{
+                console.log("MV terminada")
+                RefrescarInformacionDeMV();
+            }
+        });
+
+    });
+}
+function terminarMVAzure(id){
+    let path = require('path');
+
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        scriptPath: path.join(__dirname, path_azure_scripts),
+        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id]
+    }
+
+    PythonShell.run('terminate_instance.py', options).then(messages=>{
+        messages.forEach(element => {
+            if(element.startsWith("Error")){
+                alert("Error: "+element)
                 return false;
             }
             else{
@@ -203,7 +378,7 @@ function crearMVAWS(){
     PythonShell.run('create_instance.py', options).then(messages=>{
         messages.forEach(element => {
             if(element.startsWith("Error")){
-                console.log("Error: "+element)
+                alert("Error: "+element)
                 return false; 
             }
             else{
