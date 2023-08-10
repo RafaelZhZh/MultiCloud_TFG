@@ -9,10 +9,10 @@
 <body>
   <div id="index_listado_mv"></div>
   <div id="index_sin_conexion">
-    <h1> Por favor, asocie alguna cuenta de AWS o Azure a la aplicación.</h1>
+    <h1 id="index_sin_conexion_texto"> Por favor, asocie alguna cuenta de AWS o Azure a la aplicación.</h1>
   </div>
   <footer>
-    <button id="index_crear_maquina">Crear Maquina</button>
+    <div><button id="index_crear_maquina">Crear Maquina</button></div>
     <button id="asociar_cuentas">Asociar Cuentas</button>
     <span style="display:flex">
       <h4 id="index_cuentaAWS"></h4>
@@ -88,10 +88,10 @@
           </div>
         </div>
         <div id="asociar_cuentasAWS_conectada">
-          <h1>Cuenta de AWS: Conectada Correctamente</h1>
-          <label for="asociar_cuentasAWS_region">Seleccione la region:</label>
-          <select id="asociar_cuentasAWS_region">
-          </select>
+          <h1>Cuenta de AWS: Conectada Correctamente</h1><br>
+          <label for="asociar_cuentasAWS_region">Seleccione la region:</label><br>
+          <select id="asociar_cuentasAWS_region" class="index_select">
+          </select><br>
           <button id="asociar_cuentasAWS_cambiarregion">Cambiar</button>
         </div>
       </div>
@@ -159,29 +159,29 @@
           </div>
         </div>
         <div id="asociar_cuentasazure_conectada">
-          <h1>Cuenta de Azure: Conectada Correctamente</h1>
-          <label for="asociar_cuentasazure_region">Seleccione la region:</label>
-          <select id="asociar_cuentasazure_region">
-          </select>
+          <h1>Cuenta de Azure: Conectada Correctamente</h1><br>
+          <label for="asociar_cuentasazure_region">Seleccione la region:</label><br>
+          <select id="asociar_cuentasazure_region" class="index_select">
+          </select><br>
           <button id="asociar_cuentasazure_cambiarregion">Cambiar</button>
         </div>
       </div>  
       
       <div class="asociar_cuentas_tab_content" id="asociar_cuentas_resumentab">
         <h1> Información Resumen </h1>
-        <label for="asociar_cuentasResumen_primero">Primer Parametro:</label>
+        <label for="asociar_cuentasResumen_primero">Primer parámetro:</label>
         <br>
-        <select id="asociar_cuentasResumen_primero">
+        <select id="asociar_cuentasResumen_primero" class="index_select">
         </select>
         <br>
-        <label for="asociar_cuentasResumen_segundo">Segundo Parametro:</label>
+        <label for="asociar_cuentasResumen_segundo">Segundo parámetro:</label>
         <br>
-        <select id="asociar_cuentasResumen_segundo">
+        <select id="asociar_cuentasResumen_segundo" class="index_select">
         </select>
         <br>
-        <label for="asociar_cuentasResumen_tercero">Tercer Parametro:</label>
+        <label for="asociar_cuentasResumen_tercero">Tercer parámetro:</label>
         <br>
-        <select id="asociar_cuentasResumen_tercero">
+        <select id="asociar_cuentasResumen_tercero" class="index_select">
         </select>
         <br>
         <button id="asociar_cuentasResumen_cambiarResumen">Cambiar</button>
@@ -213,8 +213,6 @@
         <div id="crear_maquinaAWS_form">
           <label for="crear_maquinaAWS_name_input" class="crear_maquinaAWS_label">Nombre:</label>
           <input type="text" id="crear_maquinaAWS_name_input" class="crear_maquinaAWS_input" value="">
-          <label for="crear_maquinaAWS_size_input" class="crear_maquinaAWS_label">Tamaño del disco (Mayor o igual que 8GB):</label>
-          <input type="number" id="crear_maquinaAWS_size_input" class="crear_maquinaAWS_input" value="">
           <label for="crear_maquinaAWS_ami" class="crear_maquinaAWS_label">Seleccione la imagen:</label>
           <select id="crear_maquinaAWS_ami" class="crear_maquinaAWS_select">
             <option value="ami-0f34c5ae932e6f0e4">AMI de Amazon Linux 2023</option>
@@ -229,10 +227,33 @@
           </select>
           <button id="crear_maquinaAWS_confirmar">Crear Maquina</button>
         </div>
+        <div id="crear_maquinaAWS_noconectada">
+          <h1>Por favor, conecte su cuenta de AWS.</h1>
+        </div>
       </div>
     
       <div class="crear_maquina_tab_content" id="crear_maquina_azuretab">
-        <h1> Work In Progress </h1>
+        <div id="crear_maquinaazure_form">
+          <label for="crear_maquinaazure_name_input" class="crear_maquinaazure_label">Nombre:</label>
+          <input type="text" id="crear_maquinaazure_name_input" class="crear_maquinaazure_input" value="">
+          <label for="crear_maquinaazure_ami" class="crear_maquinaazure_label">Seleccione el sistema operativo:</label>
+          <select id="crear_maquinaazure_ami" class="crear_maquinaazure_select">
+            <option value="Ubuntu Server 20.04 LTS - Gen2">Ubuntu Server 20.04 LTS - Gen2</option>
+            <option value="Ubuntu Server 16.04 LTS">Ubuntu Server 16.04 LTS</option>
+            <option value="Windows Server 2019 Datacenter - x64 Gen2">Windows Server 2019 Datacenter - x64 Gen2</option>
+          </select>
+          <label for="crear_maquinaazure_tipo" class="crear_maquinaazure_label">Seleccione el tipo de máquina virtual:</label>
+          <select id="crear_maquinaazure_tipo" class="crear_maquinaazure_select">
+            <option value="Standard_DS1_v2">Standard_DS1_v2</option>
+            <option value="Standard_B1ms">Standard_B1ms</option>
+            <option value="Standard_B1s">Standard_B1s</option>
+          </select>
+          <br><span>Las máquinas de Azure no se crean de forma instánea y se debe esperar un par de minutos hasta que aparezcan. Si es la primera vez que se crea una máquina virtual en esta aplicación, la espera puede llegar a ser de 10 minutos.</span><br>
+          <button id="crear_maquinaazure_confirmar">Crear Maquina</button>
+        </div>
+        <div id="crear_maquinaazure_noconectada">
+          <h1>Por favor, conecte su cuenta de Azure.</h1>
+        </div>
       </div>
     </div>
   </div>

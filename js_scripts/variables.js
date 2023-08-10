@@ -37,12 +37,16 @@ var cuentaAWSnoconectada = document.getElementById("asociar_cuentasAWS_form");
 var cuentaAWSconectada = document.getElementById("asociar_cuentasAWS_conectada");
 var texto_ayuda_aws=document.getElementById("asociar_cuentasAWS_tutorial_text")
 var aws_connected = false;
+var maquinaAWSconectada = document.getElementById("crear_maquinaAWS_form");
+var maquinaAWSnoconectada = document.getElementById("crear_maquinaAWS_noconectada");
 
 // Azure Cuenta Conectada
 var cuentaAzurenoconectada = document.getElementById("asociar_cuentasazure_form");
 var cuentaAzureconectada = document.getElementById("asociar_cuentasazure_conectada");
 var texto_ayuda_azure=document.getElementById("asociar_cuentasazure_tutorial_text")
 var azure_connected = false;
+var maquinaAzureconectada = document.getElementById("crear_maquinaazure_form");
+var maquinaAzurenoconectada = document.getElementById("crear_maquinaazure_noconectada");
 
 
 var botonCrearMV = document.getElementById("index_crear_maquina");
@@ -83,13 +87,6 @@ azure_traduccion = {
     "private_ip_address": "DireccionPrivada",
     "public_ip_address": "DireccionPublica",
     "status": "Estado",
-    "name": "Nombre"
+    "name": "Nombre",
+    "resourcegroup": "GrupoDeRecurso"
 };
-
-
-
-
-
-
-
-

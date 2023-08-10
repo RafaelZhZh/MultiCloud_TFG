@@ -22,6 +22,8 @@ function conectAWS(publickey_temp,secretkey_temp){
                 obtener_regionesAWS();
                 cuentaAWSconectada.style.display = "block";
                 cuentaAWSnoconectada.style.display = "none";
+                maquinaAWSconectada.style.display = "block";
+                maquinaAWSnoconectada.style.display = "none";
                 botonCrearMV.style.display = "block";          
             }
             else if(element == "Mala"){
@@ -59,6 +61,8 @@ function conectAzure(client_secret_temp,subscription_id_temp, tenant_id_temp, cl
                     obtener_regionesAzure();
                     cuentaAzureconectada.style.display = "block";
                     cuentaAzurenoconectada.style.display = "none";
+                    maquinaAzureconectada.style.display = "block";
+                    maquinaAzurenoconectada.style.display = "none";
                     botonCrearMV.style.display = "block";          
                 }
                 else if(element == "Mala"){
@@ -178,8 +182,7 @@ function obtener_info_maquinasAzure(){
         let mv = new MV()
         messages.forEach(element => {
             if(element.startsWith("Error")){
-                alert("Error: "+element)
-                return false;
+                mv = new MV()
             }
             else if(element.startsWith("vm_size")){
                 if(mv.ID != ""){
@@ -227,14 +230,14 @@ function detenerMVAWS(id){
 
     });
 }
-function detenerMVAzure(id){
+function detenerMVAzure(id,resourcegroup){
     let path = require('path');
 
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
         scriptPath: path.join(__dirname, path_azure_scripts),
-        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id]
+        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id,resourcegroup]
     }
 
     PythonShell.run('stop_instance.py', options).then(messages=>{
@@ -279,14 +282,14 @@ function iniciarMVAWS(id){
 
     });
 }
-function iniciarMVAzure(id){
+function iniciarMVAzure(id,resourcegroup){
     let path = require('path');
 
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
         scriptPath: path.join(__dirname, path_azure_scripts),
-        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id]
+        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id,resourcegroup]
     }
 
     PythonShell.run('start_instance.py', options).then(messages=>{
@@ -332,14 +335,14 @@ function terminarMVAWS(id){
 
     });
 }
-function terminarMVAzure(id){
+function terminarMVAzure(id,resourcegroup){
     let path = require('path');
 
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
         scriptPath: path.join(__dirname, path_azure_scripts),
-        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id]
+        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id,resourcegroup]
     }
 
     PythonShell.run('terminate_instance.py', options).then(messages=>{
@@ -366,13 +369,12 @@ function crearMVAWS(){
     let ami = document.getElementById("crear_maquinaAWS_ami").value
     let instance_type = document.getElementById("crear_maquinaAWS_tipo").value
     let name = document.getElementById("crear_maquinaAWS_name_input").value
-    let size = document.getElementById("crear_maquinaAWS_size_input").value
 
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
         scriptPath: path.join(__dirname, path_aws_scripts),
-        args : [publickey,secretkey,region_aws,ami,instance_type,name,size]
+        args : [publickey,secretkey,region_aws,ami,instance_type,name]
     }
 
     PythonShell.run('create_instance.py', options).then(messages=>{
@@ -385,6 +387,38 @@ function crearMVAWS(){
                 console.log("MV creada")
                 RefrescarInformacionDeMV();
                 
+            }
+        });
+
+    });
+}
+
+function crearMVAzure(){
+    console.log("CREANDO MAQUINA")
+    if(region_azure == ""){
+        return false
+    }
+    let path = require('path');
+    let ami = document.getElementById("crear_maquinaazure_ami").value
+    let instance_type = document.getElementById("crear_maquinaazure_tipo").value
+    let name = document.getElementById("crear_maquinaazure_name_input").value
+
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        scriptPath: path.join(__dirname, path_azure_scripts),
+        args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, name, instance_type, region_azure, ami]
+    }
+
+    PythonShell.run('create_instance.py', options).then(messages=>{
+        messages.forEach(element => {
+            if(element.startsWith("Error")){
+                alert("Error: "+element)
+                return false; 
+            }
+            else{
+                console.log("MV creada")
+                RefrescarInformacionDeMV();
             }
         });
 

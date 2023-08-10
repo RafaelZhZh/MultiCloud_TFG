@@ -18,7 +18,10 @@ function confirmar(id,accion,from){
     texto.innerHTML = "Esta accion borrará TODOS los datos de la misma y no se puede revertir."
     boton.onclick = function() {
       if(from=="aws")terminarMVAWS(id);
-      else if (from=="azure")terminarMVAzure(id);
+      else if (from=="azure"){
+        objetoBuscado = listado_azure.find((elemento) => elemento.ID === id);
+        terminarMVAzure(objetoBuscado.Nombre,objetoBuscado.GrupoDeRecurso)
+      }
       console.log("TERMINANDO INSTANCIA")
       modal_confirmar_accion.style.display = "none";
       boton.removeAttribute("onclick");
@@ -29,7 +32,10 @@ function confirmar(id,accion,from){
     texto.innerHTML = ""
     boton.onclick = function() {
       if(from=="aws")iniciarMVAWS(id);
-      else if (from=="azure")iniciarMVAzure(id);
+      else if (from=="azure"){
+        objetoBuscado = listado_azure.find((elemento) => elemento.ID === id);
+        iniciarMVAzure(objetoBuscado.Nombre,objetoBuscado.GrupoDeRecurso)
+      }
       console.log("INICIANDO INSTANCIA")
       modal_confirmar_accion.style.display = "none";
       boton.removeAttribute("onclick");
@@ -40,7 +46,10 @@ function confirmar(id,accion,from){
     texto.innerHTML = "Asegurese de que no necesita la máquina y es la correcta. Al apagar la máquina todos los procesos internos serán apagados también."
     boton.onclick = function() {
       if(from=="aws")detenerMVAWS(id);
-      else if (from=="azure")detenerMVAzure(id);
+      else if (from=="azure"){
+        objetoBuscado = listado_azure.find((elemento) => elemento.ID === id);
+        detenerMVAzure(objetoBuscado.Nombre,objetoBuscado.GrupoDeRecurso)
+      }
       console.log("DETENIENDO INSTANCIA")
       modal_confirmar_accion.style.display = "none";
       boton.removeAttribute("onclick");

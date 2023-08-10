@@ -3,23 +3,23 @@ from azure.identity import ClientSecretCredential
 from azure.mgmt.compute import ComputeManagementClient
 from azure.mgmt.network import NetworkManagementClient
 
+
 client_secret = sys.argv[1]
 subscription_id = sys.argv[2]
 tenant_id = sys.argv[3]
 client_id = sys.argv[4]
 nameVM = sys.argv[5]
+RESOURCE_GROUP_NAME = sys.argv[6]
 
-RESOURCE_GROUP_NAME = "PruebaMultiCloud3"
 
 credential = ClientSecretCredential(tenant_id, client_id, client_secret)
 
 compute_client = ComputeManagementClient(credential, subscription_id)
 network_client = NetworkManagementClient(credential, subscription_id)
 
-os_disk_name = None
+
 vm = compute_client.virtual_machines.get(RESOURCE_GROUP_NAME, nameVM)
 os_disk_name = vm.storage_profile.os_disk.name
-
 
 poller = compute_client.virtual_machines.begin_delete(
     RESOURCE_GROUP_NAME, nameVM

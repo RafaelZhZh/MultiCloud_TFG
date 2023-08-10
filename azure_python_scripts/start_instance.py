@@ -2,13 +2,13 @@ import sys
 from azure.identity import ClientSecretCredential
 from azure.mgmt.compute import ComputeManagementClient
 
+
 client_secret = sys.argv[1]
 subscription_id = sys.argv[2]
 tenant_id = sys.argv[3]
 client_id = sys.argv[4]
 nameVM = sys.argv[5]
-
-RESOURCE_GROUP_NAME = "PruebaMultiCloud3"
+RESOURCE_GROUP_NAME = sys.argv[6]
 
 credential = ClientSecretCredential(tenant_id, client_id, client_secret)
 

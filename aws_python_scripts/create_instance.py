@@ -7,7 +7,6 @@ region = sys.argv[3]
 ami = sys.argv[4]
 instance_type = sys.argv[5]
 name = sys.argv[6]
-size = sys.argv[7]
 
 session = boto3.Session(
     aws_access_key_id=access_key,
@@ -37,7 +36,7 @@ instances = ec2.create_instances(
             'DeviceName': '/dev/xvda',
             'Ebs': {
                 'Iops': 3000,
-                'VolumeSize': int(size),
+                'VolumeSize': 30,
                 'VolumeType': 'gp3'
             }
         },

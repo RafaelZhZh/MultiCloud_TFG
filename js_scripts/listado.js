@@ -46,11 +46,11 @@ function renderListado() {
     let botones = document.createElement('div');   
     botones.style.textAlign = "right";         
     if(objeto.Estado == "running"){
-      botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_detener\" onclick=\"confirmar('"+objeto.Nombre+"','detener','azure')\">Detener</button>"
+      botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_detener\" onclick=\"confirmar('"+objeto.ID+"','detener','azure')\">Detener</button>"
     }
     else if(objeto.Estado == "deallocated"){
-      botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_iniciar\" onclick=\"confirmar('"+objeto.Nombre+"','iniciar','azure')\">Iniciar</button>"
-      botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_terminar\" onclick=\"confirmar('"+objeto.Nombre+"','terminar','azure')\">Terminar</button>"
+      botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_iniciar\" onclick=\"confirmar('"+objeto.ID+"','iniciar','azure')\">Iniciar</button>"
+      botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_terminar\" onclick=\"confirmar('"+objeto.ID+"','terminar','azure')\">Terminar</button>"
     }
     botones.innerHTML += "<button class=\"index_mv_buttons\" id=\"index_btn_moreinfo\" onclick=\"moreInfo('"+objeto.ID+"','azure')\">Mas info</button>"
     row.appendChild(botones);

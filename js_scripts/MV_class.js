@@ -10,6 +10,7 @@ class MV {
       this.DireccionPublica = '';
       this.Estado = '';
       this.Nombre = '';
+      this.GrupoDeRecurso = '';
     }
   
     AsignarValor(mensaje,from){
@@ -31,4 +32,5 @@ class MV {
             console.error('Error al asignar valores desde la cadena:', error);
         }
     }
+    
   }

@@ -16,4 +16,4 @@ try:
     for location in locations:
         print(location.name)
 except Exception as error:
-    print("Error: "+error)
+    print("Error: "+str(error))

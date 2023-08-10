@@ -22,7 +22,8 @@ for instance in ec2.instances.all():
         if(attribute_name in atributos):
             print(f"{attribute_name}: {attribute_value}")
         elif(attribute_name == "network_interfaces_attribute"):
-            print(f"mac: {attribute_value[0]['MacAddress']}")
+            if(len(attribute_value)>0):
+                print(f"mac: {attribute_value[0]['MacAddress']}")
         elif(attribute_name == "placement"):
             print(f"region: {attribute_value['AvailabilityZone']}")
         elif(attribute_name == "state"):
