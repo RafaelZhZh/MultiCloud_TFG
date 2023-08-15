@@ -28,113 +28,113 @@ class TestMainFunction(unittest.TestCase):
         self.hacerStartStop = True
 
     # GENERALES
-    def test_check_credentials_aws_correcto(self):
+    def T01AWS_test_check_credentials_aws_correcto(self):
         result = subprocess.run(["python","./aws_python_scripts/check_credentials.py",self.access_key,self.secret_key],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b''), b'Buena\n')
 
-    def test_check_credentials_aws_incorrecto(self):
+    def T02AWS_test_check_credentials_aws_incorrecto(self):
         result = subprocess.run(["python","./aws_python_scripts/check_credentials.py",self.access_key[2:],self.secret_key[2:]],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b''), b'Mala\n')
 
-    def test_check_credentials_aws_error(self):
+    def T03AWS_test_check_credentials_aws_error(self):
         result = subprocess.run(["python","./aws_python_scripts/check_credentials.py"],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '),True)
 
-    def test_get_all_instances_aws_correcto(self):
+    def T04AWS_test_get_all_instances_aws_correcto(self):
         result = subprocess.run(["python","./aws_python_scripts/get_all_instances.py",self.access_key,self.secret_key, self.region],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), False)
 
-    def test_get_all_instances_aws_error(self):
+    def T05AWS_test_get_all_instances_aws_error(self):
         result = subprocess.run(["python","./aws_python_scripts/get_all_instances.py",self.access_key[2:],self.secret_key[2:], self.region],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), True)
     
-    def test_get_all_regions_aws_correcto(self):
+    def T06AWS_test_get_all_regions_aws_correcto(self):
         result = subprocess.run(["python","./aws_python_scripts/get_all_regions.py",self.access_key,self.secret_key],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), False)
 
-    def test_get_all_regions_aws_error(self):
+    def T07AWS_test_get_all_regions_aws_error(self):
         result = subprocess.run(["python","./aws_python_scripts/get_all_regions.py",self.access_key[2:],self.secret_key[2:]],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), True)
 
-    def test_check_credentials_azure_correcto(self):
+    def T08AZR_test_check_credentials_azure_correcto(self):
         result = subprocess.run(["python","./azure_python_scripts/check_credentials.py",self.client_secret, self.subscription_id, self.tenant_id, self.client_id],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b''), b'Buena\n')
 
-    def test_check_credentials_azure_incorrecto(self):
+    def T09AZR_test_check_credentials_azure_incorrecto(self):
         result = subprocess.run(["python","./azure_python_scripts/check_credentials.py",self.client_secret[2:], self.subscription_id, self.tenant_id, self.client_id],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b''), b'Mala\n')
 
-    def test_check_credentials_azure_error(self):
+    def T10AZR_test_check_credentials_azure_error(self):
         result = subprocess.run(["python","./azure_python_scripts/check_credentials.py"],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '),True)
 
-    def test_get_all_instances_azure_correcto(self):
+    def T11AZR_test_get_all_instances_azure_correcto(self):
         result = subprocess.run(["python","./azure_python_scripts/get_all_instances.py",self.client_secret, self.subscription_id, self.tenant_id, self.client_id, self.region],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), False)
 
-    def test_get_all_instances_azure_error(self):
+    def T12AZR_test_get_all_instances_azure_error(self):
         result = subprocess.run(["python","./azure_python_scripts/get_all_instances.py"],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), True)
     
-    def test_get_all_regions_azure_correcto(self):
+    def T13AZR_test_get_all_regions_azure_correcto(self):
         result = subprocess.run(["python","./azure_python_scripts/get_all_regions.py",self.client_secret, self.subscription_id, self.tenant_id, self.client_id],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), False)
 
-    def test_get_all_regions_azure_error(self):
+    def T14AZR_test_get_all_regions_azure_error(self):
         result = subprocess.run(["python","./azure_python_scripts/get_all_regions.py"],capture_output=True)
         self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), True)
 
     # START/STOP
-    def test_start_instances_aws_correcto(self):
+    def T15AWS_test_start_instances_aws_correcto(self):
         if(self.hacerStartStop):
             result = subprocess.run(["python","./aws_python_scripts/start_instance.py",self.access_key,self.secret_key,self.region,self.instance_id],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b''), b'M\xe1quina virtual reanudada\n')
         else:
             self.assertEqual(True,True)
 
-    def test_start_instances_aws_error(self):
+    def T16AWS_test_start_instances_aws_error(self):
         if(self.hacerStartStop):
             result = subprocess.run(["python","./aws_python_scripts/start_instance.py",self.access_key,self.secret_key,self.region],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), True)
         else:
             self.assertEqual(True,True)
     
-    def test_stop_instances_aws_correcto(self):
+    def T17AWS_test_stop_instances_aws_correcto(self):
         if(self.hacerStartStop):
             result = subprocess.run(["python","./aws_python_scripts/stop_instance.py",self.access_key,self.secret_key,self.region,self.instance_id],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b''), b'M\xe1quina virtual parada\n')
         else:
             self.assertEqual(True,True)
         
-    def test_stop_instances_aws_error(self):
+    def T18AWS_test_stop_instances_aws_error(self):
         if(self.hacerStartStop):
             result = subprocess.run(["python","./aws_python_scripts/stop_instance.py",self.access_key,self.secret_key,self.region],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), True)
         else:
             self.assertEqual(True,True)
 
-    def test_start_instances_azure_correcto(self):
+    def T19AZR_test_start_instances_azure_correcto(self):
         if(self.hacerStartStop):
             result = subprocess.run(["python","./azure_python_scripts/start_instance.py",self.client_secret, self.subscription_id, self.tenant_id, self.client_id,self.nameVM,self.resource_group],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b''), b'M\xe1quina virtual reanudada\n')
         else:
             self.assertEqual(True,True)
 
-    def test_start_instances_azure_error(self):
+    def T20AZR_test_start_instances_azure_error(self):
         if(self.hacerStartStop):
             result = subprocess.run(["python","./azure_python_scripts/start_instance.py",self.client_secret, self.subscription_id, self.tenant_id, self.client_id,self.region],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), True)
         else:
             self.assertEqual(True,True)
     
-    def test_stop_instances_azure_correcto(self):
+    def T21AZR_test_stop_instances_azure_correcto(self):
         if(self.hacerStartStop):
             result = subprocess.run(["python","./azure_python_scripts/stop_instance.py",self.client_secret, self.subscription_id, self.tenant_id, self.client_id,self.nameVM,self.resource_group],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b''), b'M\xe1quina virtual parada\n')
         else:
             self.assertEqual(True,True)
 
-    def test_stop_instances_azure_error(self):
+    def T22AZR_test_stop_instances_azure_error(self):
         if(self.hacerStartStop):
             result = subprocess.run(["python","./azure_python_scripts/stop_instance.py",self.client_secret, self.subscription_id, self.tenant_id, self.client_id,self.region],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), True)
@@ -142,28 +142,28 @@ class TestMainFunction(unittest.TestCase):
             self.assertEqual(True,True)
 
     # CREAR INSTANCIAS
-    def test_create_instance_aws_correcto(self):
+    def T23AWS_test_create_instance_aws_correcto(self):
         if(self.hacerCrear):
             result = subprocess.run(["python","./aws_python_scripts/create_instance.py",self.access_key,self.secret_key, self.region, self.ami, self.instance_type, self.name],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b''), b'M\xe1quina creada\n')
         else:
             self.assertEqual(True,True)
         
-    def test_create_instance_aws_error(self):
+    def T24AWS_test_create_instance_aws_error(self):
         if(self.hacerCrear):
             result = subprocess.run(["python","./aws_python_scripts/create_instance.py",self.access_key[2:],self.secret_key[2:], self.region, self.ami, self.instance_type, self.name],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '),True)
         else:
             self.assertEqual(True,True)
 
-    def test_create_instance_azure_correcto(self):
+    def T25AZR_test_create_instance_azure_correcto(self):
         if(self.hacerCrear):
             result = subprocess.run(["python","./azure_python_scripts/create_instance.py",self.client_secret, self.subscription_id, self.tenant_id, self.client_id, self.nameVM, self.vmSize, self.region_azure, self.image],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b''), b'M\xe1quina creada\n')
         else:
             self.assertEqual(True,True)
     
-    def test_create_instance_azure_error(self):
+    def T26AZR_test_create_instance_azure_error(self):
         if(self.hacerCrear):
             result = subprocess.run(["python","./azure_python_scripts/create_instance.py"],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '),True)
@@ -171,29 +171,28 @@ class TestMainFunction(unittest.TestCase):
             self.assertEqual(True,True)
 
     # TERMINAR INSTANCIAS
-    def test_terminate_instances_azure_correcto(self):
+    def T27AZR_test_terminate_instances_azure_correcto(self):
         if(self.hacerTerminar):
             result = subprocess.run(["python","./azure_python_scripts/terminate_instance.py",self.client_secret, self.subscription_id, self.tenant_id, self.client_id,self.nameVM,self.resource_group],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b''), b'M\xe1quina virtual eliminada\n')
         else:
             self.assertEqual(True,True)
 
-
-    def test_terminate_instances_azure_error(self):
+    def T28AZR_test_terminate_instances_azure_error(self):
         if(self.hacerTerminar):
             result = subprocess.run(["python","./azure_python_scripts/terminate_instance.py",self.client_secret, self.subscription_id, self.tenant_id, self.client_id,self.region],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), True)
         else:
             self.assertEqual(True,True)
     
-    def test_terminate_instances_aws_correcto(self):
+    def T29AWS_test_terminate_instances_aws_correcto(self):
         if(self.hacerTerminar):
             result = subprocess.run(["python","./aws_python_scripts/terminate_instance.py",self.access_key,self.secret_key,self.region,self.instance_id],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b''), b'M\xe1quina virtual eliminada\n')
         else:
             self.assertEqual(True,True)
 
-    def test_terminate_instances_aws_error(self):
+    def T30AWS_test_terminate_instances_aws_error(self):
         if(self.hacerTerminar):
             result = subprocess.run(["python","./aws_python_scripts/terminate_instance.py",self.access_key,self.secret_key,self.region],capture_output=True)
             self.assertEqual(result.stdout.replace(b'\r',b'').startswith(b'Error: '), True)
