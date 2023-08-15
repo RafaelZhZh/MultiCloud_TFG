@@ -49,29 +49,27 @@ function conectAzure(client_secret_temp,subscription_id_temp, tenant_id_temp, cl
 
     PythonShell.run('check_credentials.py', options).then(messages=>{
         messages.forEach(element => {
-            if(element.startsWith("Azure: "))
-                element = element.replace("Azure: ","")
-                if(element == "Buena"){
-                    azure_connected = true
-                    client_secret = client_secret_temp
-                    subscription_id = subscription_id_temp
-                    tenant_id = tenant_id_temp
-                    client_id = client_id_temp
-                    
-                    obtener_regionesAzure();
-                    cuentaAzureconectada.style.display = "block";
-                    cuentaAzurenoconectada.style.display = "none";
-                    maquinaAzureconectada.style.display = "block";
-                    maquinaAzurenoconectada.style.display = "none";
-                    botonCrearMV.style.display = "block";          
-                }
-                else if(element == "Mala"){
-                    return false
-                }
-                else{
-                    alert("Error: "+element)
-                    return false
-                }
+            if(element == "Buena"){
+                azure_connected = true
+                client_secret = client_secret_temp
+                subscription_id = subscription_id_temp
+                tenant_id = tenant_id_temp
+                client_id = client_id_temp
+                
+                obtener_regionesAzure();
+                cuentaAzureconectada.style.display = "block";
+                cuentaAzurenoconectada.style.display = "none";
+                maquinaAzureconectada.style.display = "block";
+                maquinaAzurenoconectada.style.display = "none";
+                botonCrearMV.style.display = "block";          
+            }
+            else if(element == "Mala"){
+                return false
+            }
+            else{
+                alert("Error: "+element)
+                return false
+            }
         });
     });
 }

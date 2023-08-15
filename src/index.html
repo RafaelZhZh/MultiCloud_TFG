@@ -114,46 +114,26 @@
           <button id="asociar_cuentasazure_confirmar">Asociar Cuentas</button>
           <button id="asociar_cuentasazure_tutorial">Mostrar/Ocultar Ayuda</button>
           <div id="asociar_cuentasazure_tutorial_text">
-            <h3>Pasos para conectar cuenta de AWS:</h3>
-            <p>1. Crear una cuenta de Amazon Web Service. Seguir los pasos que indica la página web.</p>
-            <p>2. En el portal de AWS, insertar en el buscador (parte superior izquierda) el termino "IAM".</p>
-            <p>3. En el listado situado a la izquierda, pulsar sobre la sección "Usuarios"</p>
-            <p>4. En la sección "Usuarios", buscar el botón de "Agregar usuarios", situado en la parte superior derecha.</p>
-            <p>5. Introducir el nombre que desee y pulsar en "Siguiente".</p>
-            <p>6. En el paso "Establecer permisos", avanza sin modificar nada pulsando en el boton "Siguiente".</p>
-            <p>7. En el paso "Revisar y crear", avanza sin modificar nada pulsando en el boton "Crear usuario".</p>
-            <p>8. Pulsar encima del nombre que le hemos otorgado al usuario para abrir los detalles avanzados del usuario.</p>
-            <p>9. En la sección de "Permisos", en el modulo "Políticas de permisos", buscar en la parte derecha el boton "Agregar permisos", pulsarlo y elegir "Crear politica insertada".</p>
-            <p>10. En la parte superior derecha, buscar el boton "JSON" y pulsarlo.</p>
-            <p>11. Sustituir el contenido por el siguiente texto:
-              {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Sid": "VisualEditor0",
-                  "Effect": "Allow",
-                  "Action": [
-                    "ec2:DescribeImages",
-                    "ec2:DescribeInstances",
-                    "ec2:TerminateInstances",
-                    "ec2:StartInstances",
-                    "ec2:CreateTags",
-                    "ec2:DescribeRegions",
-                    "ec2:RunInstances",
-                    "ec2:StopInstances"
-                  ],
-                  "Resource": "*"
-                }
-              ]
-            }</p>
-            <p>12. Pulsar en el botón "Siguiente". </p>
-            <p>13. En el siguiente paso, introducir un nombre que se desee y pulsar en "Crear política".</p>
-            <p>14. En la ventana detallada del usuario, ir a la sección "Credenciales de seguridad". </p>
-            <p>15. En el modulo "Claves de acceso", pulsar en "Crear clave de acceso".</p>
-            <p>16. Elegir "Código local", marcar la casilla de Confirmación y pulsar en "Siguiente". </p>
-            <p>17. Introduzca la descripción que desee y pulse en "Crear clave de acceso". </p>
-            <p>18. Copiar y guardar de manera segura las claves de acceso. (Manual o CSV)</p>
-            <p>19. Pulsar en "Listo" </p>
+            <h3>Pasos para conectar cuenta de Azure (los términos pueden variar según el idioma en el que se encuentre el portal de Azure):</h3>
+            <p>1. Crear una cuenta de Azure. Seguir los pasos que indica la página web.</p>
+            <p>2. En la barra superior de busqueda, insertar "Suscripciones", buscarlo en el apartado de "Servicios" y cliquear encima.</p>
+            <p>3. Buscar la suscripcion que se desee utilizar y copiar el ID de la suscripcion (uno de los parametros necesarios para vincular la cuenta a la aplicación - Subscription ID).</p>
+            <p>4. En la barra superior de busqueda, insertar "Azure Active Directory", buscarlo en el apartado de "Servicios" y cliquear encima.</p>
+            <p>5. En el panel de información basica que aparece nada mas pulsar, localiza "Id. del inquilino" (uno de los parametros necesarios para vincular la cuenta a la aplicación - Tenant ID).</p>
+            <p>6. En el panel lateral izquierdo, buscar la sección de "Registros de aplicaciones".</p>
+            <p>7. Pulsar sobre "Nuevo registro".</p>
+            <p>8. Indicar el nombre que se desee y pulsar en "Registrar" en la parte inferior.</p>
+            <p>9. En el panel de "Información esencial", localizzar "Id. de aplciación (cliente)" (uno de los parametros necesarios para vincular la cuenta a la aplicación - Client ID)</p>
+            <p>10. En el mismo panel, localizar "Credenciales de cliente" y pulsar sobre "Agregar un certificado o secreto".</p>
+            <p>11. Pulsar sobre "Nuevo secreto de cliente" y rellenar los datos a gusto. Pulsar "Agregar" para terminar.</p>
+            <p>12. Copiar el valor de la clave secreta (uno de los parametros necesarios para vincular la cuenta a la aplicación - Client Secret), no confundir con el ID.IMPORTANTE NO PERDERLA, solo se podrá consultar en este momento. </p>
+            <p>13. En la barra superior de busqueda, insertar "Suscripciones", buscarlo en el apartado de "Servicios" y pulsar encima.</p>
+            <p>14. Pulsar sobre el nombre de la suscripcion. </p>
+            <p>15. Entrar en la sección de "Control de acceso (IAM)", situado en el panel lateral izquierdo.</p>
+            <p>16. Pulsar en "Agregar" y en "Agregar asignación de roles".</p>
+            <p>17. En la pestaña de "Rol", cambiar a la subpestaña "Roles de administrador con privilegios" y elegir "Colaborador". </p>
+            <p>18. En la pestaña de "Miembros", pulsar en "Seleccionar miembros" y en la parte derecha, buscar el nombre de la aplicación seleccionado en el paso 8. Pulsar encima del nombre y terminar pulsando "Seleccionar".</p>
+            <p>19. En la pestaña de "Revisión y asignación", terminar pulsando "Revisar y asignar" en la parte inferior.</p>
             <p>20. Rellene las claves de acceso en los espacios indicados en esta aplicación. </p>
 
           </div>

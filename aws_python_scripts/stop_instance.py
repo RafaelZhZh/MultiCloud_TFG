@@ -13,6 +13,6 @@ try:
     # Detiene la instancia
     response = ec2.stop_instances(InstanceIds=[instance_id])
     # Imprime el resultado de la operación
-    print("Instancia detenida", response)
+    print("Máquina virtual parada")
 except Exception as e:
     print("Error: "+str(e))
