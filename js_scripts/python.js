@@ -1,5 +1,5 @@
-var path_aws_scripts = '..\\aws_python_scripts\\'
-var path_azure_scripts = '..\\azure_python_scripts\\'
+var path_aws_scripts = process.resourcesPath+'\\..\\aws_python_scripts\\'
+var path_azure_scripts = process.resourcesPath+'\\..\\azure_python_scripts\\'
 
 function conectAWS(publickey_temp,secretkey_temp){
     let path = require('path');
@@ -8,7 +8,7 @@ function conectAWS(publickey_temp,secretkey_temp){
         mode: 'text',
         //pythonPath: 'path/to/python',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_aws_scripts),
+        scriptPath: path_aws_scripts,
         args : [publickey_temp,secretkey_temp]
     }
 
@@ -27,6 +27,7 @@ function conectAWS(publickey_temp,secretkey_temp){
                 botonCrearMV.style.display = "block";          
             }
             else if(element == "Mala"){
+                alert("Credenciales Erroneas")
                 return false
             }
             else{
@@ -43,7 +44,7 @@ function conectAzure(client_secret_temp,subscription_id_temp, tenant_id_temp, cl
         mode: 'text',
         //pythonPath: 'path/to/python',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_azure_scripts),
+        scriptPath:  path_azure_scripts,
         args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp]
     }
 
@@ -64,6 +65,7 @@ function conectAzure(client_secret_temp,subscription_id_temp, tenant_id_temp, cl
                 botonCrearMV.style.display = "block";          
             }
             else if(element == "Mala"){
+                alert("Credenciales Erroneas")
                 return false
             }
             else{
@@ -80,7 +82,7 @@ function obtener_regionesAWS(){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_aws_scripts),
+        scriptPath:  path_aws_scripts,
         args : [publickey,secretkey]
     }
 
@@ -105,7 +107,7 @@ function obtener_regionesAzure(){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_azure_scripts),
+        scriptPath:  path_azure_scripts,
         args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp]
     }
 
@@ -135,7 +137,7 @@ function obtener_info_maquinasAWS(){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_aws_scripts),
+        scriptPath:  path_aws_scripts,
         args : [publickey,secretkey,region_aws]
     }
 
@@ -171,7 +173,7 @@ function obtener_info_maquinasAzure(){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_azure_scripts),
+        scriptPath:  path_azure_scripts,
         args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, region_azure]
     }
 
@@ -210,7 +212,7 @@ function detenerMVAWS(id){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_aws_scripts),
+        scriptPath:  path_aws_scripts,
         args : [publickey,secretkey,region_aws,id]
     }
 
@@ -234,7 +236,7 @@ function detenerMVAzure(id,resourcegroup){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_azure_scripts),
+        scriptPath:  path_azure_scripts,
         args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id,resourcegroup]
     }
 
@@ -262,7 +264,7 @@ function iniciarMVAWS(id){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_aws_scripts),
+        scriptPath:  path_aws_scripts,
         args : [publickey,secretkey,region_aws,id]
     }
 
@@ -286,7 +288,7 @@ function iniciarMVAzure(id,resourcegroup){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_azure_scripts),
+        scriptPath:  path_azure_scripts,
         args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id,resourcegroup]
     }
 
@@ -315,7 +317,7 @@ function terminarMVAWS(id){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_aws_scripts),
+        scriptPath:  path_aws_scripts,
         args : [publickey,secretkey,region_aws,id]
     }
 
@@ -339,7 +341,7 @@ function terminarMVAzure(id,resourcegroup){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_azure_scripts),
+        scriptPath:  path_azure_scripts,
         args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, id,resourcegroup]
     }
 
@@ -371,7 +373,7 @@ function crearMVAWS(){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_aws_scripts),
+        scriptPath:  path_aws_scripts,
         args : [publickey,secretkey,region_aws,ami,instance_type,name]
     }
 
@@ -404,7 +406,7 @@ function crearMVAzure(){
     let options = {
         mode: 'text',
         pythonOptions: ['-u'],
-        scriptPath: path.join(__dirname, path_azure_scripts),
+        scriptPath:  path_azure_scripts,
         args : [client_secret_temp,subscription_id_temp, tenant_id_temp, client_id_temp, name, instance_type, region_azure, ami]
     }
 
